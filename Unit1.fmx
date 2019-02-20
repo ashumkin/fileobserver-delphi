@@ -29,4 +29,16 @@ object Form1: TForm1
     Size.Height = 32.000000000000000000
     Size.PlatformDefault = False
   end
+  object memLog: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Bottom
+    Position.Y = 120.000000000000000000
+    Size.Width = 359.000000000000000000
+    Size.Height = 360.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Viewport.Width = 351.000000000000000000
+    Viewport.Height = 352.000000000000000000
+  end
 end

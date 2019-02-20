@@ -7,12 +7,13 @@ uses
   System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls,
-  FileObserverEx, FMX.Edit;
+  FileObserverEx, FMX.Edit, FMX.ScrollBox, FMX.Memo;
 
 type
   TForm1 = class(TForm)
     sw1: TSwitch;
     edPath: TEdit;
+    memLog: TMemo;
     procedure sw1Switch(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormSaveState(Sender: TObject);
@@ -88,7 +89,11 @@ end;
 
 procedure TFileObserverHandler.onEvent(P1: Integer; P2: JString);
 begin
-  Log.d('onEvent: %d, %s  ', [P1, JStringToString(P2)]);
+  TThread.Queue(nil, procedure
+    begin
+      Log.d('onEvent: %d, %s  ', [P1, JStringToString(P2)]);
+      Form1.memLog.Lines.Add(Format('Event: %d, %s  ', [P1, JStringToString(P2)]));
+    end);
 end;
 
 end.
